@@ -61,6 +61,12 @@ The current app reconstructs a ResNet-18 classifier and loads the saved PyTorch 
 
 ## Local Setup
 
+Clone the repo and change dir:
+```bash
+git clone https://github.com/jiksrun/capstone.git
+cd capstone
+```
+
 Create and activate a virtual environment:
 
 ```bash
@@ -85,6 +91,17 @@ Open the local URL printed by Streamlit, usually:
 ```text
 http://localhost:8501
 ```
+
+Full one:
+```bash
+git clone https://github.com/jiksrun/capstone.git
+cd capstone
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py
+```
+
 
 <!-- ## Deployment -->
 <!---->
