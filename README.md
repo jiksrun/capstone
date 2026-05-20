@@ -1,6 +1,6 @@
 # Fruit Freshness Detection
 
-Streamlit prototype for classifying fruit freshness from an image. The app supports apple, banana, and strawberry images, then predicts one of six classes:
+Streamlit prototype for classifying fruit freshness from images. The app supports apple, banana, and strawberry, then predicts one of six classes:
 
 - Fresh Apple
 - Fresh Banana
@@ -9,35 +9,45 @@ Streamlit prototype for classifying fruit freshness from an image. The app suppo
 - Rotten Banana
 - Rotten Strawberry
 
-The application is built as a capstone project demo. It focuses on the user workflow: add an image, preview it, and view the predicted freshness label with confidence.
+The application is built as a capstone demo for consumer decision support. It lets users check one fruit image or compare multiple candidates, then returns a predicted freshness label, model confidence, and practical buying recommendation.
 
 ## Features
 
-- Upload an image from local storage.
-- Capture an image using the device camera.
-- Preview the selected image.
-- Run inference with a trained PyTorch model.
-- Display the predicted class, freshness group, confidence score, and probability ranking.
+- Upload one or multiple fruit images.
+- Capture fruit images one by one using the device camera.
+- Compare multiple candidates in the same session.
+- Show predicted class, freshness group, and model confidence.
+- Recommend `Good to buy` for images predicted as fresh.
+- Recommend `Avoid buying` for images predicted as rotten.
+- For multiple candidates, show the best predicted option among images predicted as fresh.
+
+Important wording: the app compares model predictions and model confidence. It does not claim to measure true biological freshness directly.
 
 ## Project Structure
 
 ```text
 .
-├── app.py
-├── requirements.txt
-├── README.md
-├── .gitignore
-├── .streamlit/
-│   └── config.toml
-├── src/
-│   ├── __init__.py
-│   ├── config.py
-│   ├── model_loader.py
-│   ├── prediction.py
-│   └── preprocessing.py
-└── model/
-    └── best_food_freshness_model.pth
+|-- app.py
+|-- requirements.txt
+|-- README.md
+|-- TODO.md
+|-- .gitignore
+|-- .streamlit/
+|   `-- config.toml
+|-- src/
+|   |-- __init__.py
+|   |-- config.py
+|   |-- model_loader.py
+|   |-- prediction.py
+|   `-- preprocessing.py
+|-- model/
+|   `-- best_food_freshness_model.pth
+`-- notebook/
+    |-- CAPSTONE_AUGMENTATION.ipynb
+    `-- CAPSTONE_MODELING.ipynb
 ```
+
+The app does not depend on notebooks at runtime. The notebooks document development, augmentation, and model training work.
 
 ## Model
 
@@ -47,7 +57,7 @@ The app expects the trained model file here:
 model/best_food_freshness_model.pth
 ```
 
-The current app reconstructs a ResNet-18 classifier and loads the saved PyTorch `state_dict`. The class order is defined in `src/config.py`; keep that order aligned with training.
+The current app reconstructs a ResNet-18 classifier and loads the saved PyTorch `state_dict`. The class order is defined in `src/config.py`; keep that order aligned with the training notebook.
 
 ## Local Setup
 
@@ -76,9 +86,9 @@ Open the local URL printed by Streamlit, usually:
 http://localhost:8501
 ```
 
-<!-- ## Deployment Notes -->
+<!-- ## Deployment -->
 <!---->
-<!-- For Streamlit deployment, make sure these files are included in the repository: -->
+<!-- For Streamlit deployment, include: -->
 <!---->
 <!-- - `app.py` -->
 <!-- - `requirements.txt` -->
@@ -86,23 +96,9 @@ http://localhost:8501
 <!-- - `src/` -->
 <!-- - `model/best_food_freshness_model.pth` -->
 <!---->
-<!-- The `data/`, `laporan/`, and most notebook files are intentionally ignored by Git. Only notebooks beginning with `CAPSTONE` are allowed by `.gitignore`. -->
+<!-- The `data/`, `laporan/`, `.venv/`, and non-CAPSTONE notebooks are intentionally excluded from Git. -->
 <!---->
-<!-- ## Git Ignore Policy -->
-<!---->
-<!-- This project excludes large or non-deployment files: -->
-<!---->
-<!-- ```text -->
-<!-- data/ -->
-<!-- laporan/ -->
-<!-- .venv/ -->
-<!-- notebook/*.ipynb -->
-<!-- !notebook/CAPSTONE*.ipynb -->
-<!-- model/*.pth -->
-<!-- !model/best_food_freshness_model.pth -->
-<!-- ``` -->
-<!---->
-<!-- The deployed model is currently about 43 MB, so regular Git is still acceptable. Git LFS is not required unless future model files grow significantly or multiple checkpoints need to be tracked. -->
+<!-- The model file is about 43 MB. Regular Git is acceptable for now; Git LFS is not required unless future model files become much larger or multiple checkpoints are tracked. -->
 <!---->
 <!-- ## Troubleshooting -->
 <!---->
@@ -112,7 +108,7 @@ http://localhost:8501
 <!-- - The architecture in `src/model_loader.py` matches the training architecture. -->
 <!-- - The class order in `src/config.py` matches training. -->
 <!---->
-<!-- If image prediction fails inside `torchvision.transforms`, confirm the installed NumPy version is below 2: -->
+<!-- If image prediction fails inside `torchvision.transforms`, confirm NumPy is below version 2: -->
 <!---->
 <!-- ```bash -->
 <!-- python -c "import numpy; print(numpy.__version__)" -->

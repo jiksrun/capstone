@@ -17,3 +17,4 @@ model/*.pth
 !model/best_food_freshness_model.pth
 
 TODO.md
+images/
