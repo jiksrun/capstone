@@ -28,6 +28,10 @@ def inject_styles():
             color: var(--ink);
         }
 
+        header[data-testid="stHeader"] {
+            position: relative !important;
+        }
+
         .block-container {
             max-width: 1320px;
             padding-top: 1rem;
