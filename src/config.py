@@ -2,10 +2,11 @@ from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-MODEL_PATH = BASE_DIR / "model" / "best_food_freshness_model.pth"
+MODEL_PATH = BASE_DIR / "model" / "best_mobilenet_v2_food_freshness_model.pth"
 
 IMAGE_SIZE = 224
-MODEL_NAME = "resnet18"
+# MODEL_NAME = "resnet18"
+MODEL_NAME = "mobilenet_v2"
 
 CLASS_NAMES = [
     "FreshApple",

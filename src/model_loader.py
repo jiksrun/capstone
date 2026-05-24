@@ -1,14 +1,18 @@
 import torch
 from torch import nn
 from torchvision import models
-
+from torchvision.models import MobileNet_V2_Weights
 from src.config import CLASS_NAMES, MODEL_PATH
 
 
 def build_model(num_classes: int = len(CLASS_NAMES)) -> nn.Module:
-    model = models.resnet18(weights=None)
-    in_features = model.fc.in_features
-    model.fc = nn.Linear(in_features, num_classes)
+    # model = models.resnet18(weights=None)
+    # in_features = model.fc.in_features
+    # model.fc = nn.Linear(in_features, num_classes)
+    model = models.mobilenet_v2(weights=None)
+
+    in_features = model.classifier[1].in_features
+    model.classifier[1] = nn.Linear(in_features, num_classes)
     return model
 
 
