@@ -15,6 +15,7 @@ notebook/.ipynb_checkpoints/
 
 model/*.pth
 !model/best_food_freshness_model.pth
+!model/best_mobilenet_v2_food_freshness_model.pth
 
 TODO.md
 images/
