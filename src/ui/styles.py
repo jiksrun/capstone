@@ -29,7 +29,7 @@ def inject_styles():
         }
 
         header[data-testid="stHeader"] {
-            position: relative !important;
+            display: none;
         }
 
         .block-container {
